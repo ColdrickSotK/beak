@@ -1,0 +1,52 @@
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <ul>
+    <li class="active"><a>New Post</a></li>
+    <li><a>Manage Posts</a></li>
+  </ul>
+</nav>
+
+<section class="main">
+  <form>
+    <input class="form-control"
+           placeholder="Enter a title..."
+           id="post-title" />
+    <textarea class="form-control"
+              placeholder="Create a post..."
+              id="markdown-input"></textarea>
+    <input class="form-control"
+           placeholder="Add tags..."
+           id="post-tags" />
+    <input class="form-control"
+           placeholder="Decide on a category..."
+           id="post-category" />
+    <input class="form-control"
+           placeholder="Add your name..."
+           id="post-author" />
+    <div class="form-footer">
+      <a href="http://daringfireball.net/markdown/syntax">
+        Formatting guide
+      </a>
+      <div class="button-set">
+        <button class="btn-default">
+          Discard draft
+        </button>
+        <button class="btn-primary">
+          Save draft
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="preview">
+  <div class="title">
+  </div>
+  <div class="content">
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.27.0/commonmark.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ns-autogrow/1.1.6/jquery.ns-autogrow.min.js"></script>
+<script src="{{ url_for('static', filename='js/create.js') }}"></script>
