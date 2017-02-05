@@ -107,6 +107,7 @@ button {
   padding: 15px;
   border: none;
   cursor: pointer;
+  font: 12pt "helvetica";
   transition: all 200ms ease-in-out;
 }
 button:focus {
