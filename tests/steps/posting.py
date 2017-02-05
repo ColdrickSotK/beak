@@ -17,13 +17,11 @@
 import subprocess
 
 from behave import *
-import requests
 
 
 @given('a beak server')
 def step_impl(context):
-    context.endpoint = 'http://localhost:8080/posts/'
-    context.server = subprocess.Popen(['python', 'beak/app.py'])
+    context.endpoint = '/posts/create'
 
 
 @when('the user tries to create a valid post')
@@ -35,7 +33,7 @@ def step_impl(context):
         "category": "testing",
         "author": "Mr Boop"
     }
-    context.response = requests.post(context.endpoint, data=post)
+    context.response = context.client.post(context.endpoint, data=post)
 
 
 @when('the user tries to create a post with no title')
@@ -46,7 +44,7 @@ def step_impl(context):
         "category": "testing",
         "author": "Mr Boop"
     }
-    context.response = requests.post(context.endpoint, data=post)
+    context.response = context.client.post(context.endpoint, data=post)
 
 
 @then('the post is created')
