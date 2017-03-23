@@ -14,10 +14,12 @@
 
 """Beak flask app for serving the API"""
 
+import json
 import os
 import time
 
 from flask import Flask
+from flask import abort
 from flask import render_template
 from flask import request
 
@@ -67,6 +69,29 @@ def add_post_from_request():
     with open(post_path, 'w') as post:
         write_metadata(post, orig_date)
         post.write('\n%s' % request.form['content'])
+
+
+def parse_post(raw):
+    metadata, content = raw.split('\n\n', 1)
+    metadata = {entry.split(':')[0].lower(): entry.split(': ')[1]
+                for entry in metadata.split('\n')}
+    return {'metadata': metadata, 'content': content}
+
+
+@app.route('/posts/<slug>')
+def get_post(slug):
+    if not slug.endswith('.md'):
+        slug += '.md'
+    path = ''
+    for root, dirs, files in os.walk('posts/'):
+        if slug in files:
+            path = os.path.join(root, slug)
+            break
+    if not path:
+        abort(404)
+
+    with open(path, 'r') as f:
+        return json.dumps(parse_post(f.read()))
 
 
 @app.route('/posts/create', methods=['GET', 'POST'])
