@@ -94,6 +94,17 @@ def get_post(slug):
         return json.dumps(parse_post(f.read()))
 
 
+@app.route('/posts/manage')
+def get_post_management():
+    posts = []
+    for root, dirs, files in os.walk('posts/'):
+        for file in files:
+            if file.endswith('.md'):
+                posts.append(file)
+
+    return render_template('manage.html', posts=posts)
+
+
 @app.route('/posts/create', methods=['GET', 'POST'])
 def create_post():
     if request.method == 'POST':

@@ -182,3 +182,63 @@ p {
   line-height: 1.7em;
 }
 
+.post-row {
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  transition: all 200ms ease-in-out;
+  position: relative;
+}
+.post-row:nth-of-type(even) {
+  background-color: #eee;
+}
+.post-row:hover {
+  background-color: #ddd;
+}
+.post-row.active {
+  background-color: #ddd;
+}
+.post-row.active .post-title::after {
+  animation: grow 300ms forwards;
+  background-color: #ddd;
+  position: absolute;
+  left: 100%;
+  bottom: calc(50% - 2px);
+  width: 0%;
+  height: 4px;
+  content: "";
+}
+@keyframes grow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 23%;
+  }
+}
+.post-row p {
+  margin: 0px;
+}
+
+.post-title {
+  width: 50%;
+}
+
+.post-date {
+  margin-top: 10px;
+  width: 50%;
+  font-size: 10pt;
+  color: #444;
+}
+
+.post-tools {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.post-tools a {
+  font-size: 10pt;
+  margin: 0px 5px;
+}
+

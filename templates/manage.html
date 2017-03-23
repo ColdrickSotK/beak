@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% set active_page = 'manage' %}
+
+{% block title %}Manage Posts | Beak{% endblock %}
+
+{% block content %}
+<section class="main">
+  <div class="title">Posts</div>
+  {% for post in posts %}
+  <div class="post-row">
+    <div class="post-title">{{ post }}</div>
+    <div class="post-tools">
+      <a><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+      <a><i class="fa fa-share-square"></i>&nbsp;Publish</a>
+      <a><i class="fa fa-trash"></i>&nbsp;Delete</a>
+    </div>
+    <div class="post-date">Posted on January 17th 2016</div>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="preview">
+  <div class="title">
+  </div>
+  <div class="content">
+  </div>
+</section>
+<script src="{{ url_for('static', filename='js/manage.js') }}"></script>
+{% endblock %}
